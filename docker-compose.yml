@@ -1,0 +1,11 @@
+services:
+  contract-terms-checker:
+    build: .
+    container_name: contract-terms-checker
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    # В прототипе данные живут в памяти процесса; при желании сохранять
+    # загруженные файлы — раскомментируйте volume и добавьте логику в приложение.
+    # volumes:
+    #   - ./data:/data

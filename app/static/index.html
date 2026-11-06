@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Проверка условий договоров поставки</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-mark">§</span>
+        <div>
+          <h1>Проверка условий договоров поставки</h1>
+          <p class="subtitle">Прототип для специалиста по закупкам · Semantic TextNavigator</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Загрузка -->
+    <section class="panel upload-panel">
+      <div class="panel-head">
+        <h2>1. Исходные документы</h2>
+        <div class="checkdate">
+          <label for="check-date">Дата проверки</label>
+          <input type="date" id="check-date" value="2026-03-10" />
+        </div>
+      </div>
+
+      <div id="dropzone" class="dropzone">
+        <p class="dz-title">Перетащите TXT-файлы сюда</p>
+        <p class="dz-hint">или нажмите, чтобы выбрать · договоры, допсоглашения, письма, проекты</p>
+        <input type="file" id="file-input" multiple accept=".txt,text/plain" hidden />
+      </div>
+
+      <div id="file-list" class="file-list"></div>
+
+      <div class="actions">
+        <button id="check-btn" class="btn btn-primary" disabled>Проверить условия</button>
+        <button id="load-sample-btn" class="btn btn-ghost">Загрузить примеры (6 файлов)</button>
+        <button id="clear-btn" class="btn btn-ghost">Очистить</button>
+      </div>
+    </section>
+
+    <!-- Результат -->
+    <section id="results" class="hidden">
+
+      <!-- Таблица -->
+      <section class="panel">
+        <div class="panel-head"><h2>2. Сводная таблица</h2></div>
+        <div class="table-wrap">
+          <table id="contracts-table">
+            <thead>
+              <tr>
+                <th>Договор</th>
+                <th>Поставщик</th>
+                <th>Сумма</th>
+                <th>Срок поставки</th>
+                <th>Статус</th>
+              </tr>
+            </thead>
+            <tbody id="contracts-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Карточки договоров -->
+      <section class="panel">
+        <div class="panel-head"><h2>3. Детали по договорам</h2></div>
+        <div id="contract-cards"></div>
+      </section>
+
+      <!-- Вопросы -->
+      <section class="panel">
+        <div class="panel-head"><h2>4. Вопросы пользователя</h2></div>
+        <div class="q-presets">
+          <button class="q-btn" data-q="Срок поставки по договору STN-101 на дату проверки?">Срок поставки STN-101</button>
+          <button class="q-btn" data-q="Какова сумма договора STN-102?">Сумма STN-102</button>
+          <button class="q-btn" data-q="Какова сумма договора STN-103?">Сумма STN-103</button>
+          <button class="q-btn" data-q="Поставка раньше 01.04.2026?">Поставки раньше 01.04.2026</button>
+        </div>
+        <div class="q-free">
+          <input type="text" id="q-input" placeholder="Свободный запрос, напр. «сумма STN-102» или «раньше 01.04.2026»" />
+          <button id="q-ask" class="btn btn-primary">Спросить</button>
+        </div>
+        <div id="q-answers"></div>
+      </section>
+
+      <!-- Исходные тексты -->
+      <section class="panel">
+        <div class="panel-head"><h2>5. Исходные тексты (для проверки цитат)</h2></div>
+        <div id="doc-viewer"></div>
+      </section>
+
+    </section>
+
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
